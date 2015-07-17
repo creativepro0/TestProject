@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.mcxiaoke.volley:library:1.0.17'
+    compile "com.github.andkulikov:transitions-everywhere:1.4.0"
 }

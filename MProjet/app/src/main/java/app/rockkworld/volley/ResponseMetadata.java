@@ -1,4 +1,4 @@
-package app.rockkworld.com.mproject.volley;
+package app.rockkworld.volley;
 
 import java.io.Serializable;
 

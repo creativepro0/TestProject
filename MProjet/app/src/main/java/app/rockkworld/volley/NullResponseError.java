@@ -1,4 +1,4 @@
-package app.rockkworld.com.mproject.volley;
+package app.rockkworld.volley;
 
 /**
  * Created by divya on 8/7/15.
