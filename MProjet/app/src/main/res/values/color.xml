@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="theme">#2FCFA8</color>
+    <color name="app_header">#19a884</color>
+    <color name="homepage_bg">#dddee3</color>
+    <color name="postfooter_bg">#e6e6e6</color>
+    <color name="postfooter_textcolor">#5c5c5c</color>
 
 </resources>

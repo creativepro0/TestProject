@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="15dp"
+    android:paddingRight="40dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:background="@color/postfooter_bg"
+    tools:context=".RSplashActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 Likes"
+        android:drawablePadding="8dp"
+        android:textColor="@color/postfooter_textcolor"
+        android:drawableLeft="@drawable/ic_likes_selector"
+        android:id="@+id/txt_likes" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="0 Comments"
+        android:layout_marginLeft="12dp"
+        android:drawablePadding="5dp"
+        android:textColor="@color/postfooter_textcolor"
+        android:drawableLeft="@drawable/ic_comments_selector"
+        android:id="@+id/txt_comments" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textColor="@color/postfooter_textcolor"
+        android:text="0 Shares"
+        android:drawablePadding="8dp"
+        android:drawableLeft="@drawable/ic_shares_selector"
+        android:id="@+id/txt_shares" />
+</LinearLayout>

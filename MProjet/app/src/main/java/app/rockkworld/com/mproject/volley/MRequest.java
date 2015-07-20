@@ -1,5 +1,7 @@
 package app.rockkworld.com.mproject.volley;
 
+import android.content.Context;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -17,11 +19,17 @@ import java.io.UnsupportedEncodingException;
 public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
     private Class<T> mClass;
+    private Context mContext;
 
-    public MRequest(int method, String url, Response.ErrorListener listener) {
+    public MRequest(Context mContext,int method, String url, Response.ErrorListener listener,Class<T> mClass) {
         super(method, url, listener);
+        this.mContext=mContext;
+        this.mClass=mClass;
     }
 
+    public Context getContext() {
+        return mContext;
+    }
 
     @Override
     protected void deliverResponse(T response) {
@@ -65,4 +73,7 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
     }
 
 
+    public Object getTaskId() {
+        return null;
+    }
 }
