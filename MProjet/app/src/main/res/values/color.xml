@@ -5,5 +5,28 @@
     <color name="homepage_bg">#dddee3</color>
     <color name="postfooter_bg">#e6e6e6</color>
     <color name="postfooter_textcolor">#5c5c5c</color>
+    <color name="white">#ffffff</color>
+    <color name="fadded_white">#77ffffff</color>
+
+    <color name="trans_black">#aa000000</color>
+    <color name="window_background">#FFF5F5F5</color>
+    <color name="color1">#FF61FF52</color>
+
+    <color name="color2">#FFF052FF</color>
+
+    <color name="color3">#FFFF9A52</color>
+
+
+    <!--<color name="window_background">#CC000000</color>-->
+
+
+    <color name="my_primary">#FFFFFF</color>
+    <color name="my_primary_dark">#B6B6B6</color>
+    <color name="my_primary_light">#B3E5FC</color>
+    <color name="my_accent">#FFFFFF</color>
+    <color name="my_primary_text">#ffffff</color>
+    <color name="my_secondary_text">#ffffff</color>
+    <color name="my_icons">#FFFFFF</color>
+    <color name="my_divider">#B6B6B6</color>
 
 </resources>

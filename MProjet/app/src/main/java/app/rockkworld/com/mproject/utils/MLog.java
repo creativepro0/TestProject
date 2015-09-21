@@ -7,6 +7,15 @@ import android.util.Log;
  */
 public class MLog {
 
+    public static final String APP_TAG="Rockkworld";
+
+    public static void d(String message) {
+
+        if (Config.ENVIRONMENT == Config.TEST_ENVIROMENT) {
+            Log.d(APP_TAG, message);
+        }
+
+    }
     public static void d(String tag, String message) {
 
         if (Config.ENVIRONMENT == Config.TEST_ENVIROMENT) {
@@ -15,6 +24,13 @@ public class MLog {
 
     }
 
+    public static void e(String message) {
+
+        if (Config.ENVIRONMENT == Config.TEST_ENVIROMENT) {
+            Log.e(APP_TAG, message);
+        }
+
+    }
     public static void e(String tag, String message) {
 
         if (Config.ENVIRONMENT == Config.TEST_ENVIROMENT) {

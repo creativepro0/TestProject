@@ -10,8 +10,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.Hashtable;
+
+import app.rockkworld.com.mproject.model.UserMetaDetail;
 
 /**
  * Created by divya on 6/7/15.
@@ -20,6 +25,7 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
     private Class<T> mClass;
     private Context mContext;
+    private Type mType;
 
     public MRequest(Context mContext,int method, String url, Response.ErrorListener listener,Class<T> mClass) {
         super(method, url, listener);
@@ -46,7 +52,9 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
             String json=changeData(response);
             System.out.println("============"+getUrl());
 
-            Response<T> success = Response.success(new GsonBuilder().create().fromJson(json, mClass), HttpHeaderParser.parseCacheHeaders(response));
+//            if (mType==null) {
+                Response<T> success = Response.success(new GsonBuilder().create().fromJson(json, mClass), HttpHeaderParser.parseCacheHeaders(response));
+//            }
             if (success!=null) {
                 Response.error(new NullResponseError());
             }
