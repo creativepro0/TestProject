@@ -1,5 +1,7 @@
 package app.rockkworld.com.mproject.activities;
 
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,23 +10,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import app.rockkworld.R;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-public class PDPage extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
+    @Bind(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.tab)
+    TabLayout tabLayout;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pdpage);
+        setContentView(R.layout.activity_profile);
+        ButterKnife.bind(this);
         setupToolbar();
 
     }
 
-    private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void setupToolbar() {
+        tabLayout.addTab(tabLayout.newTab().setText("My Post"));
+        tabLayout.addTab(tabLayout.newTab().setText("Basic info"));
+        collapsingToolbarLayout.setTitle("John");
         setSupportActionBar(toolbar);
         // Show menu icon
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.logo_mini_rockworld);
+//        ab.setHomeAsUpIndicator(R.drawable.logo_mini_rockworld);
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -42,6 +55,9 @@ public class PDPage extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == android.R.id.home) {
+            super.onBackPressed();
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

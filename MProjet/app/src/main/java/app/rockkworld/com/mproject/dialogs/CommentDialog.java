@@ -30,6 +30,7 @@ public class CommentDialog extends Dialog implements View.OnClickListener {
         super(context, R.style.DialogTheme);
         this.context = context;
         this.listener = listener;
+        getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         setContentView(R.layout.like_dialog);
         findViewById(R.id.gotolikeParent).setVisibility(View.VISIBLE);
         findViewById(R.id.sendCommentParent).setVisibility(View.VISIBLE);

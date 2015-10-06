@@ -1,12 +1,8 @@
 package app.rockkworld.com.mproject.activities;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import app.rockkworld.R;
@@ -19,7 +15,7 @@ public class RSplashActivity extends Activity {
         @Override
         public void run() {
 //            Intent intent = new Intent(RSplashActivity.this, SignUpActivity.class);
-            Intent intent = new Intent(RSplashActivity.this, WallActivity.class);
+            Intent intent = new Intent(RSplashActivity.this, ProfileActivity.class);
             startActivity(intent);
             finish();
         }

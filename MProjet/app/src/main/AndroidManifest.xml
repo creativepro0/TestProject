@@ -25,6 +25,11 @@
             android:label="@string/title_activity_wall">
 
         </activity>
+        <activity
+            android:name=".com.mproject.activities.ProfileActivity"
+            android:label="@string/title_activity_wall">
+
+        </activity>
     </application>
 
 </manifest>
