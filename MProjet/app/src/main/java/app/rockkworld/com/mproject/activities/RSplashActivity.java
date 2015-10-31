@@ -1,11 +1,12 @@
 package app.rockkworld.com.mproject.activities;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import app.rockkworld.R;
+import app.rockkworld.com.mproject.utils.PrefUtils;
 
 
 public class RSplashActivity extends Activity {
@@ -14,10 +15,15 @@ public class RSplashActivity extends Activity {
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-//            Intent intent = new Intent(RSplashActivity.this, SignUpActivity.class);
-            Intent intent = new Intent(RSplashActivity.this, ProfileActivity.class);
+            Intent intent=null;
+            if(PrefUtils.isLoggedIN(RSplashActivity.this)){
+                 intent = new Intent(RSplashActivity.this, ProfileActivity.class);
+            }else{
+                intent = new Intent(RSplashActivity.this, SignUpActivity.class);
+            }
             startActivity(intent);
             finish();
+
         }
     };
 
@@ -25,6 +31,7 @@ public class RSplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsplash);
+
     }
 
 
@@ -41,28 +48,4 @@ public class RSplashActivity extends Activity {
         getWindow().getDecorView().removeCallbacks(runnable);
     }
 
-    public void startTransition(View v){
-
-//
-//        Intent intent=new Intent(this,WallActivity.class);
-//        switch (v.getId()){
-//            case R.id.img1:
-//                intent.putExtra("color",1);
-//                break;
-//            case R.id.img2:
-//                intent.putExtra("color",2);
-//                break;
-//            case R.id.img3:
-//                intent.putExtra("color",3);
-//                break;
-//        }
-//
-//        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN) {
-//            String transitionName = getString(R.string.title_activity_wall);
-//            ActivityOptionsCompat transitionActivityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, v, transitionName);
-//            startActivity(intent, transitionActivityOptions.toBundle());
-//        }else {
-//            startActivity(intent);
-//        }
-    }
 }

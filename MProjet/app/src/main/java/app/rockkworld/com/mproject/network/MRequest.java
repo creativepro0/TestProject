@@ -1,4 +1,4 @@
-package app.rockkworld.com.mproject.volley;
+package app.rockkworld.com.mproject.network;
 
 import android.content.Context;
 
@@ -10,13 +10,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.util.Hashtable;
-
-import app.rockkworld.com.mproject.model.UserMetaDetail;
 
 /**
  * Created by divya on 6/7/15.
