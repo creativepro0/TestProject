@@ -16,7 +16,7 @@ public class RSplashActivity extends Activity {
         @Override
         public void run() {
             Intent intent=null;
-            if(PrefUtils.isLoggedIN(RSplashActivity.this)){
+            if(PrefUtils.get().isLoggedIn()){
                  intent = new Intent(RSplashActivity.this, ProfileActivity.class);
             }else{
                 intent = new Intent(RSplashActivity.this, SignUpActivity.class);
