@@ -2,6 +2,10 @@ package app.rockkworld;
 
 import android.app.Application;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import app.rockkworld.network.MVolleyManager;
 import app.rockkworld.utils.PrefUtils;
 
 /**
@@ -13,5 +17,20 @@ public class RockkWorldApp extends Application {
     public void onCreate() {
         super.onCreate();
         PrefUtils.init(getApplicationContext());
+        initUIL();
+        initVolley();
+    }
+
+    private void initVolley() {
+        MVolleyManager.init(getApplicationContext());
+    }
+
+    private void initUIL() {
+        ImageLoader instance = ImageLoader.getInstance();
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .denyCacheImageMultipleSizesInMemory()
+                .memoryCacheSizePercentage(40)
+                .build();
+        instance.init(configuration);
     }
 }

@@ -20,18 +20,18 @@ import java.lang.reflect.Type;
 public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
     private Class<T> mClass;
-    private Context mContext;
+//    private Context mContext;
     private Type mType;
 
-    public MRequest(Context mContext,int method, String url, Response.ErrorListener listener,Class<T> mClass) {
+    public MRequest(/*Context mContext,*/int method, String url, Response.ErrorListener listener,Class<T> mClass) {
         super(method, url, listener);
-        this.mContext=mContext;
+//        this.mContext=mContext;
         this.mClass=mClass;
     }
 
-    public Context getContext() {
-        return mContext;
-    }
+//    public Context getContext() {
+//        return mContext;
+//    }
 
     @Override
     protected void deliverResponse(T response) {
