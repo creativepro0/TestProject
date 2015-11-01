@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    tools:context="app.rockkworld.com.mproject.activities.ProfileActivity">
+    tools:context="app.rockkworld.activities.ProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

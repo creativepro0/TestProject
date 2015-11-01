@@ -1,8 +1,8 @@
-package app.rockkworld.com.mproject;
+package app.rockkworld;
 
 import android.app.Application;
 
-import app.rockkworld.com.mproject.utils.PrefUtils;
+import app.rockkworld.utils.PrefUtils;
 
 /**
  * Created by rohit on 31/10/15.

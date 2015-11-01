@@ -1,8 +1,7 @@
-package app.rockkworld.com.mproject.view.behavior;
+package app.rockkworld.view.behavior;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;

@@ -14,6 +14,7 @@ import app.rockkworld.adapters.CommentsAdapter;
 import app.rockkworld.model.Comments;
 import app.rockkworld.model.UserComment;
 import app.rockkworld.model.UserMetaDetail;
+import app.rockkworld.utils.PrefUtils;
 import app.rockkworld.utils.TestConstants;
 
 /**
@@ -52,12 +53,12 @@ public class CommentDialog extends Dialog implements View.OnClickListener {
             String text = ((EditText) findViewById(R.id.editTxtComment)).getText().toString();
             if (listener != null && !(TextUtils.isEmpty(text))) {
                 UserComment userComment = new UserComment();
-//                UserMetaDetail userDetail = SharedPrefUtils.getUserDetail(context);
-//                userComment.setUid(userDetail.getUid());
-//                userComment.setCommentTS("just now");
-//                userComment.setUserName(userDetail.getName());
-//                userComment.setId("22");
-//                userComment.setCommentMsg(text);
+                UserMetaDetail userDetail = PrefUtils.get().getUserDetail();
+                userComment.setUid(userDetail.getUid());
+                userComment.setCommentTS("just now");
+                userComment.setUserName(userDetail.getName());
+                userComment.setId("22");
+                userComment.setCommentMsg(text);
                 listener.onSendComment(userComment);
             }
         }
