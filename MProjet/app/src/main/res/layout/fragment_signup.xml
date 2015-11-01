@@ -42,7 +42,7 @@
         android:layout_alignParentBottom="true"
         android:paddingBottom="@dimen/dp60">
 
-        <include layout="@layout/layout_signin"/>
+        <include layout="@layout/layout_signup"/>
 
     </FrameLayout>
 
