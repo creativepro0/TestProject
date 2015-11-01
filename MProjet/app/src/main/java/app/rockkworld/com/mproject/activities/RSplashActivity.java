@@ -15,15 +15,14 @@ public class RSplashActivity extends Activity {
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Intent intent=null;
-            if(PrefUtils.get().isLoggedIn()){
-                 intent = new Intent(RSplashActivity.this, ProfileActivity.class);
-            }else{
+            Intent intent = null;
+            if (PrefUtils.get().isLoggedIn()) {
+                intent = new Intent(RSplashActivity.this, WallActivity.class);
+            } else {
                 intent = new Intent(RSplashActivity.this, SignUpActivity.class);
             }
             startActivity(intent);
             finish();
-
         }
     };
 
@@ -31,7 +30,6 @@ public class RSplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsplash);
-
     }
 
 
@@ -39,7 +37,6 @@ public class RSplashActivity extends Activity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         getWindow().getDecorView().postDelayed(runnable, 3000);
-
     }
 
     @Override
