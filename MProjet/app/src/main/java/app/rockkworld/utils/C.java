@@ -1,4 +1,4 @@
-package app.rockkworld;
+package app.rockkworld.utils;
 
 /**
  * Created by divya on 21/9/15.

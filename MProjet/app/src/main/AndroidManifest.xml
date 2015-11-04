@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SignUpActivity"
-            android:label="@string/title_activity_sign_up" >
-        </activity>
-        <activity
             android:name=".activities.WallActivity"
             android:label="@string/title_activity_wall" >
         </activity>

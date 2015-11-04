@@ -2,6 +2,7 @@ package app.rockkworld;
 
 import android.app.Application;
 
+import app.rockkworld.network.MVolleyManager;
 import app.rockkworld.utils.PrefUtils;
 
 /**
@@ -13,5 +14,6 @@ public class RockkWorldApp extends Application {
     public void onCreate() {
         super.onCreate();
         PrefUtils.init(getApplicationContext());
+        MVolleyManager.getInstance(getApplicationContext());
     }
 }

@@ -31,11 +31,9 @@ public class WallActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_wall);
+        ButterKnife.bind(this);
         populateFeeds();
-
 
     }
 

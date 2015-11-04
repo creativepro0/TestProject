@@ -16,24 +16,34 @@ public class LoginSignUp extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_sign_up);
-        loadLoginFragment(R.id.fragmentContainer,new Bundle());
+        loadRegisterFragment();
+    }
+
+    public void loadLoginFragment() {
+        loadLoginFragment(R.id.fragmentContainer, new Bundle());
     }
 
     public void loadLoginFragment(int viewId, Bundle bundle) {
-        LoginFragment loginFragment = new LoginFragment();
+        LoginFragment loginFragment = LoginFragment.newInstance(bundle);
         loginFragment.setArguments(bundle);
+        int[] customAnimations = new int[]{R.anim.slide_in_right, R.anim.slide_out_left,
+                R.anim.slide_in_left, R.anim.slide_out_right};
+        commitTransactions(viewId, loginFragment, customAnimations, "loginFragment");
+    }
 
-        commitTransactions(viewId, loginFragment, null, "loginFragment");
+    public void loadRegisterFragment() {
+        loadRegisterFragment(R.id.fragmentContainer, new Bundle());
     }
 
     public void loadRegisterFragment(int viewId, Bundle extras) {
-        RegisterFragment registerFragment = new RegisterFragment();
+        RegisterFragment registerFragment = RegisterFragment.newInstance(extras);
         registerFragment.setArguments(extras);
         int[] customAnimations = new int[]{R.anim.slide_in_right, R.anim.slide_out_left,
                 R.anim.slide_in_left, R.anim.slide_out_right};
         commitTransactions(viewId, registerFragment, customAnimations, "registerFragment");
     }
-    private void commitTransactions(int viewId, Fragment fragment, int[] customAnimations,String mTag) {
+
+    private void commitTransactions(int viewId, Fragment fragment, int[] customAnimations, String mTag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (customAnimations != null) {
