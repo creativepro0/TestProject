@@ -16,45 +16,49 @@ import app.rockkworld.utils.LruBitmapCache;
  * all http request
  */
 public class MVolleyManager {
+    private static MVolleyManager mgr;
 
+    private Context mAppContext;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private static MVolleyManager volleyManager;
 
     private MVolleyManager(Context context) {
-        initManager(context);
+        init(context);
+        mAppContext = context;
     }
 
+    public static void initiate(Context context) {
+        mgr = new MVolleyManager(context);
+    }
 
-    public void initManager(Context context) {
+    public static MVolleyManager getInstance() {
+        return mgr;
+    }
 
+    private void init(Context context) {
         mRequestQueue = Volley.newRequestQueue(context);
         mImageLoader = new ImageLoader(mRequestQueue, new LruBitmapCache());
     }
 
-    public static void init(Context context) {
-        if (volleyManager == null) {
-            volleyManager = new MVolleyManager(context);
+    private RequestQueue getRequestQueue(Context context) {
+        if (mRequestQueue != null) {
+            return mRequestQueue;
+        } else {
+            init(context);
+            return mRequestQueue;
         }
     }
 
-    public static MVolleyManager get() {
-        return volleyManager;
-    }
-
-    private RequestQueue getRequestQueue() {
-        return mRequestQueue;
-    }
-
-    public ImageLoader getImageLoader() {
+    public ImageLoader getImageLoader(Context context) {
         if (mImageLoader == null) {
-            mImageLoader = new ImageLoader(getRequestQueue(), new LruBitmapCache());
+            mImageLoader = new ImageLoader(getRequestQueue(context), new LruBitmapCache());
+
         }
         return mImageLoader;
     }
 
     public void addToQueue(MRequest<?> nacresRequest) {
-        getRequestQueue().add(nacresRequest);
+        getRequestQueue(nacresRequest.getContext()).add(nacresRequest);
     }
 
     public void cancelAllByTaskId(Context context, final Object taskId) {
@@ -63,7 +67,7 @@ public class MVolleyManager {
             if (taskId == null) {
                 throw new IllegalArgumentException("Cannot cancelAll with a null taskId");
             }
-            getRequestQueue().cancelAll(new RequestFilter() {
+            getRequestQueue(context).cancelAll(new RequestFilter() {
                 @Override
                 public boolean apply(Request<?> request) {
 
@@ -83,7 +87,7 @@ public class MVolleyManager {
      * non-null and equality is by identity.
      */
     public void cancelAllByTag(Context context, Object tag) {
-        getRequestQueue().cancelAll(tag);
+        getRequestQueue(context).cancelAll(tag);
 
     }
 
@@ -95,7 +99,7 @@ public class MVolleyManager {
         if (taskId == null) {
             throw new IllegalArgumentException("Cannot cancelAll with a null url-Prefix");
         }
-        getRequestQueue().cancelAll(new RequestFilter() {
+        getRequestQueue(context).cancelAll(new RequestFilter() {
             @Override
             public boolean apply(Request<?> request) {
 
@@ -108,7 +112,7 @@ public class MVolleyManager {
      * Cancels all requests in this queue.
      */
     public void cancelAll(Context context) {
-        getRequestQueue().cancelAll(new RequestFilter() {
+        getRequestQueue(context).cancelAll(new RequestFilter() {
             @Override
             public boolean apply(Request<?> request) {
                 return true;
@@ -120,7 +124,7 @@ public class MVolleyManager {
      * Cancels Request in this queue.
      */
     public void cancelRequest(Context context, final Request<?> nacresRequest) {
-        getRequestQueue().cancelAll(new RequestFilter() {
+        getRequestQueue(context).cancelAll(new RequestFilter() {
             @Override
             public boolean apply(Request<?> request) {
                 return request.equals(nacresRequest);

@@ -22,7 +22,7 @@ public class RockkWorldApp extends Application {
     }
 
     private void initVolley() {
-        MVolleyManager.init(getApplicationContext());
+        MVolleyManager.initiate(getApplicationContext());
     }
 
     private void initUIL() {

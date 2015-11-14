@@ -19,7 +19,7 @@ public class RSplashActivity extends Activity {
             if (PrefUtils.get().isLoggedIn()) {
                 intent = new Intent(RSplashActivity.this, WallActivity.class);
             } else {
-                intent = new Intent(RSplashActivity.this, SignUpActivity.class);
+                intent = new Intent(RSplashActivity.this, LoginSignUp.class);
             }
             startActivity(intent);
             finish();

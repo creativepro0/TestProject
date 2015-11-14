@@ -20,18 +20,18 @@ import java.lang.reflect.Type;
 public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
     private Class<T> mClass;
-//    private Context mContext;
+    private Context mContext;
     private Type mType;
 
-    public MRequest(/*Context mContext,*/int method, String url, Response.ErrorListener listener,Class<T> mClass) {
+    public MRequest(Context mContext, int method, String url, Response.ErrorListener listener, Class<T> mClass) {
         super(method, url, listener);
-//        this.mContext=mContext;
-        this.mClass=mClass;
+        this.mContext = mContext;
+        this.mClass = mClass;
     }
 
-//    public Context getContext() {
-//        return mContext;
-//    }
+    public Context getContext() {
+        return mContext;
+    }
 
     @Override
     protected void deliverResponse(T response) {
@@ -45,13 +45,13 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
         try {
 
-            String json=changeData(response);
-            System.out.println("============"+getUrl());
+            String json = changeData(response);
+            System.out.println("============" + getUrl());
 
 //            if (mType==null) {
-                Response<T> success = Response.success(new GsonBuilder().create().fromJson(json, mClass), HttpHeaderParser.parseCacheHeaders(response));
+            Response<T> success = Response.success(new GsonBuilder().create().fromJson(json, mClass), HttpHeaderParser.parseCacheHeaders(response));
 //            }
-            if (success!=null) {
+            if (success != null) {
                 Response.error(new NullResponseError());
             }
             return success;
@@ -59,13 +59,13 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
             return Response.error(new ParseError(e));
-        }catch (Exception e) {
-            System.out.println(mClass+": "+e);
+        } catch (Exception e) {
+            System.out.println(mClass + ": " + e);
             return Response.error(new VolleyError(e));
         }
     }
 
-    private String changeData(NetworkResponse response) throws UnsupportedEncodingException{
+    private String changeData(NetworkResponse response) throws UnsupportedEncodingException {
 
 
         String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers)).trim();
