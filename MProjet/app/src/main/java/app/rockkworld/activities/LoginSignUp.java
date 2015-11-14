@@ -46,12 +46,15 @@ public class LoginSignUp extends FragmentActivity {
     private void commitTransactions(int viewId, Fragment fragment, int[] customAnimations, String mTag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (customAnimations != null) {
-            transaction.setCustomAnimations(customAnimations[0], customAnimations[1], customAnimations[2], customAnimations[3]);
+        boolean isPopBackStack = fragmentManager.popBackStackImmediate(mTag, 0);
+        if (!isPopBackStack) {
+            if (customAnimations != null) {
+                transaction.setCustomAnimations(customAnimations[0], customAnimations[1], customAnimations[2], customAnimations[3]);
+            }
+            transaction.replace(viewId, fragment, mTag);
+            transaction.addToBackStack(mTag);
+            transaction.commit();
         }
-        transaction.replace(viewId, fragment, mTag);
-        transaction.addToBackStack(mTag);
-        transaction.commit();
     }
 
 }
