@@ -39,8 +39,8 @@ public class LoginFragment extends Fragment implements TextView.OnEditorActionLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mView=inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this,mView);
+        View mView = inflater.inflate(R.layout.fragment_login, container, false);
+        ButterKnife.bind(this, mView);
         return mView;
     }
 
@@ -55,20 +55,21 @@ public class LoginFragment extends Fragment implements TextView.OnEditorActionLi
 
     @OnClick(R.id.btn_signIn)
     public void signIn(Button button) {
-        Intent intent=new Intent(getActivity(), WallActivity.class);
+        Intent intent = new Intent(getActivity(), WallActivity.class);
         getActivity().startActivity(intent);
         getActivity().finish();
     }
 
     @OnClick(R.id.btn_signUp)
     public void signUp(Button button) {
-        ((LoginSignUp)getActivity()).loadRegisterFragment();
+        getActivity().onBackPressed();
+//        ((LoginSignUp)getActivity()).loadRegisterFragment();
 
     }
 
     @OnClick(R.id.btn_forgetPassword)
     public void forgotPassword(Button button) {
-        ((LoginSignUp)getActivity()).loadRegisterFragment();
+        ((LoginSignUp) getActivity()).loadRegisterFragment();
 
     }
 }
