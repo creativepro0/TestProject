@@ -49,9 +49,9 @@ public class MVolleyManager {
         }
     }
 
-    public ImageLoader getImageLoader(Context context) {
+    public ImageLoader getImageLoader() {
         if (mImageLoader == null) {
-            mImageLoader = new ImageLoader(getRequestQueue(context), new LruBitmapCache());
+            mImageLoader = new ImageLoader(getRequestQueue(mAppContext), new LruBitmapCache());
 
         }
         return mImageLoader;
