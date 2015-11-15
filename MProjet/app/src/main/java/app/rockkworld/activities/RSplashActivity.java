@@ -36,7 +36,7 @@ public class RSplashActivity extends Activity {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        getWindow().getDecorView().postDelayed(runnable, 3000);
+        getWindow().getDecorView().postDelayed(runnable, 1000);
     }
 
     @Override

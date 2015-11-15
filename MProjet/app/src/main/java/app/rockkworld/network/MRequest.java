@@ -19,22 +19,31 @@ import java.lang.reflect.Type;
  */
 public class MRequest<T extends ResponseMetadata> extends Request<T> {
 
+    private Priority mPriority = Priority.NORMAL;
+    private ResponseListner mListener;
     private Class<T> mClass;
-    private Context mContext;
+//    private Context mContext;
     private Type mType;
 
-    public MRequest(Context mContext, int method, String url, Response.ErrorListener listener, Class<T> mClass) {
-        super(method, url, listener);
-        this.mContext = mContext;
+    public MRequest( String url, ResponseListner responseListner, Class<T> mClass) {
+        super(Method.POST, url, null);
+//        this.mContext = mContext;
+        mListener = responseListner;
         this.mClass = mClass;
     }
 
     public Context getContext() {
-        return mContext;
+        return null;//mContext;
     }
 
     @Override
     protected void deliverResponse(T response) {
+        try {
+            if ((null != response) && (response instanceof ResponseMetadata)) {
+                mListener.onResponse(this, response);
+            }
+        } catch (Exception e) {
+        }
 
     }
 
@@ -48,9 +57,7 @@ public class MRequest<T extends ResponseMetadata> extends Request<T> {
             String json = changeData(response);
             System.out.println("============" + getUrl());
 
-//            if (mType==null) {
             Response<T> success = Response.success(new GsonBuilder().create().fromJson(json, mClass), HttpHeaderParser.parseCacheHeaders(response));
-//            }
             if (success != null) {
                 Response.error(new NullResponseError());
             }

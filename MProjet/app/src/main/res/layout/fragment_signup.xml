@@ -28,10 +28,8 @@
 
     <ImageView
         android:id="@+id/line"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/small_margin"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignRight="@+id/imageView2"
         android:layout_below="@+id/textView"
         android:layout_marginTop="@dimen/small_margin"
         android:src="@drawable/line_white" />

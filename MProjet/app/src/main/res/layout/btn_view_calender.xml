@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="30dp"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:text="1988"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="6dp"
+        android:background="@color/blue_dark"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:text="Nov"
+        android:textColor="@color/blue_dark"
+        android:gravity="center"
+        android:textSize="6dp"
+        android:background="@color/postfooter_bg"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:text="12"
+        android:textColor="@color/blue_dark"
+        android:gravity="center"
+        android:textSize="6dp"
+        android:background="@color/postfooter_bg"/>
+</LinearLayout>

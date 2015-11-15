@@ -56,6 +56,9 @@ public class LoginSignUp extends FragmentActivity {
             transaction.replace(viewId, fragment, mTag);
             transaction.commit();
         }
+        transaction.replace(viewId, fragment, mTag);
+//        transaction.addToBackStack(mTag);
+        transaction.commit();
     }
 
 }
