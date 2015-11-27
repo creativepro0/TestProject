@@ -5,8 +5,8 @@ import android.app.Application;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import app.rockkworld.network.MVolleyManager;
 import app.rockkworld.utils.PrefUtils;
+import app.rockkworld.volley.VolleyManager;
 
 /**
  * Created by rohit on 31/10/15.
@@ -22,7 +22,7 @@ public class RockkWorldApp extends Application {
     }
 
     private void initVolley() {
-        MVolleyManager.initiate(getApplicationContext());
+        VolleyManager.init(getApplicationContext());
     }
 
     private void initUIL() {

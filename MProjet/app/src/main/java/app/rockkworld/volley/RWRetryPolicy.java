@@ -1,31 +1,32 @@
 
-package app.rockkworld.network;
+package app.rockkworld.volley;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.VolleyError;
 
-import app.rockkworld.utils.MLog;
-
 /**
- * Created by Divya on 17/7/15.
+ * Created by neha on 26/2/15.
  */
-public class MRetryPolicy extends DefaultRetryPolicy {
+public class RWRetryPolicy extends DefaultRetryPolicy {
 
-    private final String CLASS_TAG=getClass().getName();
 
-    public MRetryPolicy(int initialTimeoutMs, int aMaxNumRetries, float aBackoffMultiplier) { /* compiled code */
+
+    public RWRetryPolicy(int initialTimeoutMs, int aMaxNumRetries, float aBackoffMultiplier) { /* compiled code */
+
         super(initialTimeoutMs,aMaxNumRetries,aBackoffMultiplier);
+
     }
 
     @Override
     public void retry(VolleyError error) throws VolleyError {
-        MLog.d(CLASS_TAG, "::" + error);
+        System.out.println("::"+error);
         super.retry(error);
+
     }
 
     @Override
     public int getCurrentTimeout() {
-        MLog.d(CLASS_TAG, "============TimeOut");
+        System.out.println("============TimeOut");
         //  getCurrentRetryCount();
         return  super.getCurrentTimeout();
     }
@@ -36,7 +37,7 @@ public class MRetryPolicy extends DefaultRetryPolicy {
 
     /* compiled code */
         int count=super.getCurrentRetryCount();
-        MLog.d(CLASS_TAG, "============CurrentRetryCount  :  " + count);
+        System.out.println("============CurrentRetryCount  :  "+count);
         return  count;
 
     }

@@ -14,14 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-
 import app.rockkworld.R;
 import app.rockkworld.activities.LoginSignUp;
 import app.rockkworld.activities.WallActivity;
-import app.rockkworld.model.LikeDislikeModel;
-import app.rockkworld.network.MRequest;
-import app.rockkworld.network.MVolleyManager;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -25,6 +25,7 @@ public class RWActivity extends AppCompatActivity {
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
+
     @Bind(R.id.menu_drawer)
     LinearLayout layout;
 
@@ -32,7 +33,6 @@ public class RWActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rw);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

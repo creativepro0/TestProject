@@ -51,10 +51,12 @@ public class LoginSignUp extends FragmentActivity {
             if (customAnimations != null) {
                 transaction.setCustomAnimations(customAnimations[0], customAnimations[1], customAnimations[2], customAnimations[3]);
             }
-            if (fragmentManager.findFragmentById(viewId) != null)
+            if (fragmentManager.findFragmentById(viewId) != null) {
                 transaction.addToBackStack(mTag);
+            }
             transaction.replace(viewId, fragment, mTag);
             transaction.commit();
+            return;
         }
         transaction.replace(viewId, fragment, mTag);
 //        transaction.addToBackStack(mTag);
