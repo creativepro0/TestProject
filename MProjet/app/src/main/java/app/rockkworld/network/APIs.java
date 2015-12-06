@@ -50,11 +50,11 @@ public class APIs {
     }
     /**
      * @Method POST
-     * @apiParams uid:String,lastFetchedPostID:String
+     * @apiParams profileId, page
      *
      */
     public static String URL_NewFeed(){
-        return "http://rockkworld.com/webservice/news-feed.php";
+        return "http://www.rockkworld.com/Mobile/newsfeeddata?profileId=";
     }
 
     /**
@@ -63,7 +63,7 @@ public class APIs {
      *
      */
     public static String URL_UserProfile(){
-        return "";
+        return "http://www.rockkworld.com/Mobile/profileDetail?own_name=jiya.178&user_name=monika.119";
     }
 
     /**

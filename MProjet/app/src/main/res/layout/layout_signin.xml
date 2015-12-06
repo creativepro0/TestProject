@@ -29,7 +29,8 @@
         android:padding="@dimen/dp2"
         android:textColor="@color/white"
         android:textColorHint="@color/fadded_white"
-        android:textCursorDrawable="@null" />
+        android:textCursorDrawable="@null"
+        android:text="creative.pro155@gmail.com"/>
 
 
     <ImageView
@@ -54,6 +55,7 @@
         android:background="@drawable/bg_edit"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
+        android:text="creativepro155"
         android:padding="@dimen/dp2"
         android:textColor="@color/white"
         android:textColorHint="@color/fadded_white"
@@ -75,23 +77,23 @@
 
     <Button
         android:id="@+id/btn_signIn"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_signUp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/medium_margin"
-        android:background="@drawable/bg_button"
+        android:background="@drawable/selector_btn_rounded"
         android:text="Sign In"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btn_signUp"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_button"
+        android:background="@drawable/selector_btn_rounded"
         android:text="New on Rockkworld? Sign Up"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/white" />

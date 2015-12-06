@@ -16,11 +16,11 @@ public class RSplashActivity extends Activity {
         @Override
         public void run() {
             Intent intent = null;
-            if (PrefUtils.get().isLoggedIn()) {
-                intent = new Intent(RSplashActivity.this, WallActivity.class);
-            } else {
-                intent = new Intent(RSplashActivity.this, LoginSignUp.class);
-            }
+//            if (PrefUtils.get().isLoggedIn()) {
+//                intent = new Intent(RSplashActivity.this, WallActivity.class);
+//            } else {
+                intent = new Intent(RSplashActivity.this, LoginSignUpActivity.class);
+//            }
             startActivity(intent);
             finish();
         }

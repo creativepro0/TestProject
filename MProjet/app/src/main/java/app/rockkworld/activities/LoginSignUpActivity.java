@@ -10,13 +10,13 @@ import app.rockkworld.R;
 import app.rockkworld.fragments.LoginFragment;
 import app.rockkworld.fragments.RegisterFragment;
 
-public class LoginSignUp extends FragmentActivity {
+public class LoginSignUpActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_sign_up);
-        loadRegisterFragment();
+        loadLoginFragment();
     }
 
     public void loadLoginFragment() {
