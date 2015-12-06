@@ -96,15 +96,12 @@ public class LoginFragment extends BaseFragment implements TextView.OnEditorActi
 
     @OnClick(R.id.btn_signUp)
     public void signUp(Button button) {
-//        ((LoginSignUp)getActivity()).loadRegisterFragment();
-        loadingDialog=new LoadingDialog(getActivity());
-        Utils.showDialog(loadingDialog);
+        ((LoginSignUpActivity) getActivity()).loadRegisterFragment();
 
     }
 
     @OnClick(R.id.btn_forgetPassword)
-    public void forgotPassword(Button button) {
-        ((LoginSignUpActivity) getActivity()).loadRegisterFragment();
+    public void forgotPassword(View button) {
 
     }
 

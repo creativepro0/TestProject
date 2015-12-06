@@ -1,5 +1,6 @@
 package app.rockkworld.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,6 +32,14 @@ import app.rockkworld.volley.VolleyManager;
  * Created by divya on 29/11/15.
  */
 public class NewFeedFragment extends BaseFragment implements ResponseListener {
+
+    int color;
+    public NewFeedFragment() {
+    }
+    @SuppressLint("ValidFragment")
+    public NewFeedFragment(int color) {
+        this.color = color;
+    }
 
     public static NewFeedFragment newInstance(Bundle args){
         NewFeedFragment fragment = new NewFeedFragment();
