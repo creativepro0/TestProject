@@ -1,5 +1,6 @@
 package app.rockkworld.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RWActivity extends AppCompatActivity {
+public class RWActivity extends AppCompatActivity implements MenuUtils.OnMenuClickListener {
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -40,12 +41,7 @@ public class RWActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         MenuUtils utils = new MenuUtils();
-        utils.initMenu("Rohit", layout, new MenuUtils.OnMenuClickListener() {
-            @Override
-            public void onMenuClick(View view, String tag) {
-
-            }
-        });
+        utils.initMenu("Rohit", layout, this);
     }
 
     @OnClick(R.id.btn_hambuger)
@@ -61,5 +57,15 @@ public class RWActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_search)
     public void openSearch(ImageView button) {
+    }
+
+    @Override
+    public void onMenuClick(View view, String tag) {
+        switch (tag) {
+            case MenuUtils.MY_PROFILE:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

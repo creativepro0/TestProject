@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import app.rockkworld.R;
 import app.rockkworld.activities.LoginSignUp;
+import app.rockkworld.activities.RWActivity;
 import app.rockkworld.activities.WallActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,7 +56,6 @@ public class RegisterFragment extends Fragment implements TextView.OnEditorActio
     Button btnSignUp;
 
 
-
     public static RegisterFragment newInstance(Bundle args) {
         RegisterFragment fragment = new RegisterFragment();
         fragment.setArguments(args);
@@ -71,15 +71,15 @@ public class RegisterFragment extends Fragment implements TextView.OnEditorActio
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View mView=inflater.inflate(R.layout.fragment_signup, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View mView = inflater.inflate(R.layout.fragment_signup, container, false);
         ButterKnife.bind(this, mView);
         return mView;
     }
 
     @OnClick(R.id.btn_signIn)
     public void signIn(Button button) {
-        ((LoginSignUp)getActivity()).loadLoginFragment();
+        ((LoginSignUp) getActivity()).loadLoginFragment();
     }
 
     @OnClick(R.id.btn_signUp)
@@ -87,7 +87,7 @@ public class RegisterFragment extends Fragment implements TextView.OnEditorActio
 //        MRequest registrationReq=new MRequest(getActivity(), Request.Method.POST,"",null, LikeDislikeModel.class);
 //        MVolleyManager.getInstance().addToQueue(registrationReq);
 
-        Intent intent=new Intent(getActivity(), WallActivity.class);
+        Intent intent = new Intent(getActivity(), RWActivity.class);
         getActivity().startActivity(intent);
         getActivity().finish();
     }
