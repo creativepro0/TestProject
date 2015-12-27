@@ -15,4 +15,9 @@
     <color name="transBlack">#99000000</color>
     <color name="transWhite">#99FFFFFF</color>
     <color name="theme">#009688</color>
+
+    <color name="tuple_textDark">#FF000000</color>
+    <color name="tuple_textLight">#FF5F5F5F</color>
+    <color name="postfooter_textcolor">#FF5c5c5c</color>
+    <color name="postfooter_bg">#e6e6e6</color>
 </resources>

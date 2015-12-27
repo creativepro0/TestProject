@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    cardview:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+        <!--<com.android.volley.toolbox.NetworkImageView-->
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/iv_tuple_userPic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/tuple_userName"
+            style="@style/tuple_textview_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_tuple_userPic"
+            android:text="Rakesh Gupta"/>
+
+        <TextView
+            android:id="@+id/tuple_postTime"
+            style="@style/tuple_textview_light1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tuple_userName"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_tuple_userPic"
+            android:text="Rakesh Gupta"/>
+
+        <LinearLayout
+            android:id="@+id/tuple_actionCounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tuple_postTime"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_tuple_userPic"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tuple_countLike"
+                style="@style/tuple_textview_light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tuple_userName"
+                android:layout_toRightOf="@+id/iv_tuple_userPic"
+                android:visibility="gone"
+                android:drawablePadding="5dp"
+                android:text="0"/>
+            <!--android:drawableLeft="@drawable/ic_likes_small"-->
+            <TextView
+                android:id="@+id/tuple_countDislikes"
+                style="@style/tuple_textview_light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:visibility="gone"/>
+            <!--android:drawableLeft="@drawable/selector_ic_likes"-->
+            <TextView
+                android:id="@+id/tuple_countComment"
+                style="@style/tuple_textview_light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="0"/>
+            <!--android:drawableLeft="@drawable/ic_comments_small"-->
+            <TextView
+                android:id="@+id/tuple_countShare"
+                style="@style/tuple_textview_light1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="0"/>
+            <!--android:drawableLeft="@drawable/ic_share_small"-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tuple_postConent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tuple_userPic"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tuple_postText"
+                style="@style/tuple_textview_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:text="Rakesh Gupta dfkjdk fkjdk k dfkjdk fkjdk k dfkjdk fkjdk kdfjkdf sfjskdf \nfjkfjff\nsjfsfhsfjfhsjf"/>
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/tuple_postImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+        <include
+            layout="@layout/post_tuple_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tuple_postConent"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

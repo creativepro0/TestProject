@@ -29,6 +29,7 @@ import app.rockkworld.R;
 //import app.rockkworld.utils.PrefUtils;
 //import app.rockkworld.utils.Utils;
 import app.rockkworld.activities.LoginSignUpActivity;
+import app.rockkworld.adapters.PostsAdapter;
 import app.rockkworld.dialogs.LoadingDialog;
 import app.rockkworld.models.NewsFeedModel;
 import app.rockkworld.models.UserPostRoot;
@@ -107,9 +108,9 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
 //            MLog.d("NesFeed","posts count = "+posts.size());
 //        }
         Utils.hideDialog(loadingDialog);
-//        ListView list= (ListView) getView().findViewById(R.id.list_newFeeds);
-//        PostsAdapter adapter=new PostsAdapter(getActivity(),0,posts);
-//        list.setAdapter(adapter);
+        ListView list= (ListView) getView().findViewById(R.id.list_newFeeds);
+        PostsAdapter adapter=new PostsAdapter(getActivity(),0,posts);
+        list.setAdapter(adapter);
     }
 
     @Override
