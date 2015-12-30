@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class NewsFeedModel {
     @SerializedName("user_post")
-    ArrayList<UserPostRoot> posts;
+    ArrayList<UserPost> posts;
 
-    public ArrayList<UserPostRoot> getPosts() {
+    public ArrayList<UserPost> getPosts() {
         return posts;
     }
 

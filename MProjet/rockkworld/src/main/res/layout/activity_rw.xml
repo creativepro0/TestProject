@@ -77,10 +77,16 @@
             <!--android:layout_height="match_parent"-->
             <!--android:layout_weight="1"/>-->
 
-        <fragment
+        <FrameLayout
+            android:id="@+id/rw_fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="app.rockkworld.fragments.NewFeedFragment"/>
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+        <!--<fragment-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:name="app.rockkworld.fragments.NewFeedFragment"/>-->
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"

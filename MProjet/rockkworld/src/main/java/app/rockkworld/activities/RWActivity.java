@@ -12,6 +12,8 @@ import android.view.View;
 import app.rockkworld.R;
 import app.rockkworld.adapters.ViewPagerAdapter;
 import app.rockkworld.fragments.NewFeedFragment;
+import app.rockkworld.fragments.ProfileViewFragment;
+import app.rockkworld.utils.Utils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,17 +38,6 @@ public class RWActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-//        TextView tv = (TextView) findViewById(R.id.welcomeTxt);
-//        HashMap<String, String> userPref = (HashMap<String, String>) PrefUtils.get().getUserPref();
-//        Set<String> keys = userPref.keySet();
-//        Iterator<String> iterator = keys.iterator();
-//        String str = "";
-//        while (iterator.hasNext()) {
-//            String s = iterator.next();
-//            str += s + " : " + userPref.get(s) + "\n";
-//        }
-//        tv.setText(str);
-
 //        MenuUtils utils = new MenuUtils();
 //        utils.initMenu(PrefUtils.get().getUserPref(PrefUtils.UserPref.DISPLAY_NAME), layout, new MenuUtils.OnMenuClickListener() {
 //            @Override
@@ -55,31 +46,13 @@ public class RWActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        NewFeedFragment newFeedFragment = NewFeedFragment.newInstance(null);
-//        loadFragment(newFeedFragment, R.id.content_frame, null);
-
-//        ViewPager viewPager = (ViewPager) findViewById(R.id.vp_tabContent);
-//        setupViewPager(viewPager);
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tl_tabs);
-//        tabLayout.setupWithViewPager(viewPager);
-
-//        setupTabIcon(tabLayout);
+        NewFeedFragment newFeedFragment = NewFeedFragment.newInstance(null);
+        int[] customAnimations = new int[]{R.anim.slide_in_right, R.anim.slide_out_left,
+                R.anim.slide_in_left, R.anim.slide_out_right};
+        Utils.commitTransactions(getSupportFragmentManager(),R.id.rw_fragmentContainer,newFeedFragment,customAnimations, false);
 
     }
 
-//    private void setupTabIcon(TabLayout tabLayout) {
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_schedule_white);
-////        tabLayout.getTabAt(1).setIcon(R.drawable.ic_search_white);
-////        tabLayout.getTabAt(2).setIcon(R.drawable.ic_search_white);
-//    }
-
-//    private void setupViewPager(ViewPager viewPager) {
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.addFrag(new NewFeedFragment(getResources().getColor(R.color.accent_material_light)), "");
-////        adapter.addFrag(new NewFeedFragment(getResources().getColor(R.color.ripple_material_light)), "");
-////        adapter.addFrag(new NewFeedFragment(getResources().getColor(R.color.button_material_dark)), "");
-//        viewPager.setAdapter(adapter);
-//    }
 
     @OnClick(R.id.btn_hambugerMenu)
     public void toggleHambuger(View button) {
@@ -95,4 +68,11 @@ public class RWActivity extends AppCompatActivity {
 //    @OnClick(R.id.btn_search)
 //    public void openSearch(ImageView button) {
 //    }
+    @OnClick(R.id.btn_profile)
+    public void showProfile(View button) {
+        ProfileViewFragment newFeedFragment = ProfileViewFragment.newInstance(null);
+        int[] customAnimations = new int[]{R.anim.slide_in_right, R.anim.slide_out_left,
+                R.anim.slide_in_left, R.anim.slide_out_right};
+        Utils.commitTransactions(getSupportFragmentManager(),R.id.rw_fragmentContainer,newFeedFragment,customAnimations, true);
+    }
 }

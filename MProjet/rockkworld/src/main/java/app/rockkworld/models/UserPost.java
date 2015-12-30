@@ -150,3 +150,20 @@ public class UserPost implements Serializable{
                 '}';
     }
 }
+/*
+* public class UserPostRoot implements Serializable{
+
+    @SerializedName("Userpost")
+    UserPost post;
+
+    public UserPost getPost() {
+        return post;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPostRoot{" +
+                "post=" + post +
+                '}';
+    }
+}*/

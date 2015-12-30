@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +31,7 @@ import app.rockkworld.activities.LoginSignUpActivity;
 import app.rockkworld.adapters.PostsAdapter;
 import app.rockkworld.dialogs.LoadingDialog;
 import app.rockkworld.models.NewsFeedModel;
-import app.rockkworld.models.UserPostRoot;
+import app.rockkworld.models.UserPost;
 import app.rockkworld.utils.APIs;
 import app.rockkworld.utils.MLog;
 import app.rockkworld.utils.PrefUtils;
@@ -64,15 +63,14 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fetchData();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_news_feeds,null);
-
+        View view=inflater.inflate(R.layout.fragment_news_feeds, null);
+        fetchData();
         return view;
     }
     LoadingDialog loadingDialog;
@@ -97,10 +95,10 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
     public void onResponse(RWRequest request, Object response) {
 
         NewsFeedModel newFeedResponse= (NewsFeedModel) response;
-        ArrayList<UserPostRoot> posts = newFeedResponse.getPosts();
+        ArrayList<UserPost> posts = newFeedResponse.getPosts();
         if (posts!=null) {
             if (posts.size()>0)
-            MLog.d("Post", posts.get(0).getPost().toString());
+            MLog.d("Post", posts.get(0).toString());
         }else {
             MLog.d("Post", "Post ==null");
         }
@@ -117,4 +115,23 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
     public void onErrorResponse(RWRequest request, VolleyError error) {
 //        Utils.hideDialog(loadingDialog);
     }
+
+//    private SwingBottomInAnimationAdapter getSwingBottomAdapter(PostsAdapter srpResultsAdapter, ListView lv) {
+//        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(srpResultsAdapter);
+////        swingBottomInAnimationAdapter.setInitialDelayMillis(300);
+//        swingBottomInAnimationAdapter.setAbsListView(lv);
+//        return swingBottomInAnimationAdapter;
+//    }
+//    public EndlessScrollListener(Context ctx, boolean sort, boolean removeFlag, String url, SearchResultsAdapter npResultsAdapter,
+//                                 ViewGroup loader, String sorttype) {
+//        // super(ctx, sort, removeFlag, loader, sorttype);
+//        super(removeFlag,loader, SearchResultModel.sCount,5,sort,sorttype);
+//        this.rest_url_srp_page = url;
+//        this.searchResultsAdapter = npResultsAdapter;
+//        isVSPLoaded=false;
+//        this.ctx =ctx;
+//        this.extraLazyResultsUrl = "&sid="+ SearchResultsActivity.sid + "&search_id="
+//                +SearchResultsActivity.mSearchidFromServer;
+//
+//    }
 }

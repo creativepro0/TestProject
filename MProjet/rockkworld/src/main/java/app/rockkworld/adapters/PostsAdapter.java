@@ -16,7 +16,7 @@ import java.util.List;
 
 import app.rockkworld.R;
 import app.rockkworld.models.UserPost;
-import app.rockkworld.models.UserPostRoot;
+import app.rockkworld.models.UserPost;
 import app.rockkworld.utils.APIs;
 import app.rockkworld.utils.MLog;
 import app.rockkworld.utils.TestUtils;
@@ -25,10 +25,10 @@ import app.rockkworld.volley.VolleyManager;
 /**
  * Created by divya on 30/8/15.
  */
-public class PostsAdapter extends ArrayAdapter<UserPostRoot> implements View.OnClickListener {
+public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClickListener {
     private Context context;
 
-    public PostsAdapter(Context context, int resource, List<UserPostRoot> objects) {
+    public PostsAdapter(Context context, int resource, List<UserPost> objects) {
         super(context, resource, objects);
         this.context = context;
     }
@@ -74,7 +74,7 @@ public class PostsAdapter extends ArrayAdapter<UserPostRoot> implements View.OnC
         } else {
             postViewHolder = (PostViewHolder) convertView.getTag();
         }
-        UserPost item = getItem(position).getPost();
+        UserPost item = getItem(position);
 //        String uid = item.getUid();
 //        UserMetaDetail userMetaDetail = userMap.get(uid);
         postViewHolder.userName.setText(item.getDisplayName());
@@ -140,7 +140,7 @@ public class PostsAdapter extends ArrayAdapter<UserPostRoot> implements View.OnC
 //
 //            int postiion= (int) v.getTag();
 //            String clickedView="";
-//            UserPostRoot UserPostRoot = getItem(postiion);
+//            UserPost UserPost = getItem(postiion);
 //            switch (v.getId()){
 //                case R.id.do_comment:
 //                    clickedView="do_comment";
@@ -153,15 +153,15 @@ public class PostsAdapter extends ArrayAdapter<UserPostRoot> implements View.OnC
 //                    break;
 //                case R.id.do_likes:
 //                    clickedView="do_likes";
-//                    UserPostRoot.setLikeCount(!UserPostRoot.getLikeCount());
-//                    v.setSelected(UserPostRoot.getLikeCount());
-////                    UserPostRoot.setLikeCount(UserPostRoot.getLikeCount());
+//                    UserPost.setLikeCount(!UserPost.getLikeCount());
+//                    v.setSelected(UserPost.getLikeCount());
+////                    UserPost.setLikeCount(UserPost.getLikeCount());
 //                    break;
 //                case R.id.do_dislikes:
 //                    clickedView="do_dislikes";
-//                    UserPostRoot.setDislikeStatus(!UserPostRoot.getDislikeStatus());
-//                    v.setSelected(UserPostRoot.getDislikeStatus());
-////                    UserPostRoot.setDislikeCount(UserPostRoot.getDislikeCount()+1);
+//                    UserPost.setDislikeStatus(!UserPost.getDislikeStatus());
+//                    v.setSelected(UserPost.getDislikeStatus());
+////                    UserPost.setDislikeCount(UserPost.getDislikeCount()+1);
 //                    break;
 //
 //                case R.id.txt_commentCount:
