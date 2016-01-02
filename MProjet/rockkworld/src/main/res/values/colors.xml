@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="window_bg">#FFFFFFFF</color>
+
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00796B</color>
+    <color name="primary_light">#B2DFDB</color>
+    <color name="accent">#00796B</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    
+    
+    <color name="transBlack">#99000000</color>
+    <color name="transWhite">#99FFFFFF</color>
+    <color name="theme">#009688</color>
+
+    <color name="tuple_textDark">#FF000000</color>
+    <color name="tuple_textLight">#FF5F5F5F</color>
+    <color name="postfooter_textcolor">#FF5c5c5c</color>
+    <color name="postfooter_bg">#e6e6e6</color>
+</resources>

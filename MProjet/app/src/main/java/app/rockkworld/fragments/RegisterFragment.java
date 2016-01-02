@@ -1,8 +1,6 @@
 package app.rockkworld.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import app.rockkworld.R;
-import app.rockkworld.activities.LoginSignUp;
-import app.rockkworld.activities.RWActivity;
-import app.rockkworld.activities.WallActivity;
+import app.rockkworld.activities.LoginSignUpActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +21,7 @@ import butterknife.OnClick;
 /**
  * Created by divya on 1/11/15.
  */
-public class RegisterFragment extends Fragment implements TextView.OnEditorActionListener {
+public class RegisterFragment extends BaseFragment implements TextView.OnEditorActionListener {
 
 
     @Bind(R.id.et_name)
@@ -48,12 +44,6 @@ public class RegisterFragment extends Fragment implements TextView.OnEditorActio
 
     @Bind(R.id.rBtn_male)
     RadioButton rBtnMale;
-
-    @Bind(R.id.btn_signIn)
-    Button btnSignIn;
-
-    @Bind(R.id.btn_signUp)
-    Button btnSignUp;
 
 
     public static RegisterFragment newInstance(Bundle args) {
@@ -79,17 +69,11 @@ public class RegisterFragment extends Fragment implements TextView.OnEditorActio
 
     @OnClick(R.id.btn_signIn)
     public void signIn(Button button) {
-        ((LoginSignUp) getActivity()).loadLoginFragment();
+        getFragmentManager().popBackStack();
     }
 
     @OnClick(R.id.btn_signUp)
     public void signUp(Button button) {
-//        MRequest registrationReq=new MRequest(getActivity(), Request.Method.POST,"",null, LikeDislikeModel.class);
-//        MVolleyManager.getInstance().addToQueue(registrationReq);
-
-        Intent intent = new Intent(getActivity(), RWActivity.class);
-        getActivity().startActivity(intent);
-        getActivity().finish();
     }
 
     @Override

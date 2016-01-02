@@ -1,0 +1,17 @@
+<resources>
+
+   <style name="tuple_textview_dark">
+       <item name="android:textColor">@color/tuple_textDark</item>
+       <item name="android:textSize">16dp</item>
+   </style>
+    <style name="tuple_textview_light">
+        <item name="android:textColor">@color/tuple_textLight</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="tuple_textview_light1">
+        <item name="android:textColor">@color/tuple_textLight</item>
+        <item name="android:textSize">10dp</item>
+    </style>
+   
+
+</resources>

@@ -15,7 +15,7 @@ import app.rockkworld.R;
 import app.rockkworld.adapters.PostsAdapter;
 import app.rockkworld.model.UserMetaDetail;
 import app.rockkworld.model.UserPost;
-import app.rockkworld.model.UserPostListModel;
+import app.rockkworld.model.NewsFeedModel;
 import app.rockkworld.utils.TestConstants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,12 +38,12 @@ public class WallActivity extends AppCompatActivity {
     }
 
     private void populateFeeds() {
-        UserPostListModel posts = new GsonBuilder().create().fromJson(TestConstants.RESPONSE_NEWSFEEDS, UserPostListModel.class);
-        postsArr = posts.getPosts();
-        userMap = posts.getUserMap();
-
-        PostsAdapter postsAdapter = new PostsAdapter(this, -1, postsArr, userMap);
-        feedList.setAdapter(postsAdapter);
+//        NewsFeedModel posts = new GsonBuilder().create().fromJson(TestConstants.RESPONSE_NEWSFEEDS, NewsFeedModel.class);
+//        postsArr = posts.getPosts();
+//        userMap = posts.getUserMap();
+//
+//        PostsAdapter postsAdapter = new PostsAdapter(this, -1, postsArr, userMap);
+//        feedList.setAdapter(postsAdapter);
 
 //        CardView headerView = (CardView) getLayoutInflater().inflate(R.layout.listview_header, null);
 //        list.addHeaderView(headerView);

@@ -10,7 +10,10 @@
         <item name="android:windowBackground">@color/trans_black</item>
         <!--Customize your theme here.-->
     </style>
-
+    <style name="DialogThemeTransparent" parent="android:Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
     <style name="expanded">
         <item name="android:shadowColor">@color/theme</item>
         <item name="android:shadowRadius">20</item>

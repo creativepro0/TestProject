@@ -13,7 +13,16 @@ public class Login {
     @SerializedName("accessToken")
     String accessToken;
     @SerializedName("result")
-    Result loginResult;
+    LoginResult loginLoginResult;
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "status='" + status + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", loginLoginResult=" + loginLoginResult +
+                '}';
+    }
 
     public String getStatus() {
         return status;
@@ -31,15 +40,15 @@ public class Login {
         this.accessToken = accessToken;
     }
 
-    public Result getLoginResult() {
-        return loginResult;
+    public LoginResult getLoginLoginResult() {
+        return loginLoginResult;
     }
 
-    public void setLoginResult(Result loginResult) {
-        this.loginResult = loginResult;
+    public void setLoginLoginResult(LoginResult loginLoginResult) {
+        this.loginLoginResult = loginLoginResult;
     }
 
-    public class Result {
+    public class LoginResult {
 
         @SerializedName("deviceInfo")
         String deviceInfo;
@@ -49,6 +58,16 @@ public class Login {
         String dName;
         @SerializedName("dpic")
         String dPic;
+
+        @Override
+        public String toString() {
+            return "LoginResult{" +
+                    "deviceInfo='" + deviceInfo + '\'' +
+                    ", uid='" + uid + '\'' +
+                    ", dName='" + dName + '\'' +
+                    ", dPic='" + dPic + '\'' +
+                    '}';
+        }
 
         public String getDeviceInfo() {
             return deviceInfo;
