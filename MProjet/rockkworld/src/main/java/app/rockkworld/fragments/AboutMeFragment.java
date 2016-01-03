@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * Created by rohit on 1/1/16.
  */
 public class AboutMeFragment extends BaseFragment {
-    private static final String[] KEYS = {"location", "city", "zipcode", "", "forum", "relationship", "about_me", "i_like_to_meet", "movies", "interests", "music", "smoker", "drinker"};
+    private static final String[] KEYS = {"location", "city", "zipcode", "dob", "forum", "relationship", "about_me", "i_like_to_meet", "movies", "interests", "music", "smoker", "drinker"};
 
     @Bind(R.id.scrollContainer)
     LinearLayout linearLayout;

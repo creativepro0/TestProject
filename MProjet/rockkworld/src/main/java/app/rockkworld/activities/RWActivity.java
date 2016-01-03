@@ -2,11 +2,14 @@ package app.rockkworld.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import app.rockkworld.R;
@@ -18,8 +21,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RWActivity extends AppCompatActivity {
+public class RWActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
+    private static final String TAG = RWActivity.class.getName();
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
 //
@@ -31,7 +35,7 @@ public class RWActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rw);
-
+getSupportFragmentManager().addOnBackStackChangedListener(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,9 +74,29 @@ public class RWActivity extends AppCompatActivity {
 //    }
     @OnClick(R.id.btn_profile)
     public void showProfile(View button) {
+        findViewById(R.id.btn_profile).setVisibility(View.INVISIBLE);
         ProfileViewFragment newFeedFragment = ProfileViewFragment.newInstance(null);
         int[] customAnimations = new int[]{R.anim.slide_in_right, R.anim.slide_out_left,
                 R.anim.slide_in_left, R.anim.slide_out_right};
-        Utils.commitTransactions(getSupportFragmentManager(),R.id.rw_fragmentContainer,newFeedFragment,customAnimations, true);
+        Utils.commitTransactions(getSupportFragmentManager(), R.id.rw_fragmentContainer, newFeedFragment, customAnimations, true);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if(backStackEntryCount==0){
+            findViewById(R.id.btn_profile).setVisibility(View.VISIBLE);
+            return;
+        }
+        FragmentManager.BackStackEntry backEntry=getSupportFragmentManager().getBackStackEntryAt(backStackEntryCount - 1);
+        String str=backEntry.getName();
+//        Fragment fragment=getSupportFragmentManager().findFragmentByTag(str);
+        Log.d(TAG, "onBackStackChanged() called with: " + "");
+        boolean b = ProfileViewFragment.class.getSimpleName().equalsIgnoreCase(str);
+        if(!b){
+            findViewById(R.id.btn_profile).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.btn_profile).setVisibility(View.INVISIBLE);
+        }
     }
 }

@@ -11,17 +11,17 @@
         android:padding="10dp">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/theme" />
+            android:textColor="@color/tuple_textLight" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/theme" />
+            android:background="@color/postfooter_bg" />
 
         <TextView
             android:id="@+id/description"

@@ -7,8 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import app.rockkworld.R;
 import app.rockkworld.adapters.ProfilePagerAdapter;
@@ -16,6 +18,7 @@ import app.rockkworld.models.NewsFeedModel;
 import app.rockkworld.models.UserProfileModel;
 import app.rockkworld.utils.APIs;
 import app.rockkworld.utils.MLog;
+import app.rockkworld.views.CircularImageView;
 import app.rockkworld.volley.GsonRequest;
 import app.rockkworld.volley.RWRequest;
 import app.rockkworld.volley.ResponseListener;
@@ -32,6 +35,16 @@ public class ProfileViewFragment extends BaseFragment implements ResponseListene
     TabLayout tabLayout;
     @Bind(R.id.vp_pager)
     ViewPager viewPager;
+    @Bind(R.id.tv_userName)
+    TextView tv_userName;
+
+    @Bind(R.id.tv_city)
+    TextView tv_city;
+
+
+
+    @Bind(R.id.civ_userImage)
+    CircularImageView civ_userImage;
 
     public ProfileViewFragment() {
     }
@@ -62,7 +75,11 @@ public class ProfileViewFragment extends BaseFragment implements ResponseListene
         UserProfileModel profileData = (UserProfileModel) response;
 
         if (response != null) {
-            viewPager.setAdapter(new ProfilePagerAdapter(getChildFragmentManager(), response.getUserDetail().getUserDetail()));
+            UserProfileModel.User userDetail = response.getUserDetail().getUserDetail();
+            ImageLoader.getInstance().displayImage(APIs.URL_GetUserImage(userDetail.getProfilePhoto()),civ_userImage);
+            tv_userName.setText(userDetail.getDiaplayName());
+            tv_city.setText(userDetail.getCity());
+            viewPager.setAdapter(new ProfilePagerAdapter(getChildFragmentManager(), userDetail));
             tabLayout.setupWithViewPager(viewPager);
 
             MLog.d("Profile data ------------------------>>>>>>>>>");
