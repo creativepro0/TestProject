@@ -189,8 +189,8 @@ public abstract class RWRequest<T> extends Request<T> {
 //        return mContext;
 //    }
 //
-//    public void setContext(Context activity) {
-//        mContext = activity;
+//    public void setContext(Context mActivty) {
+//        mContext = mActivty;
 //    }
 
     public ResponseListener<T> getListener() {

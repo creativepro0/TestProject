@@ -1,7 +1,12 @@
 package app.rockkworld.adapters;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import app.rockkworld.R;
+import app.rockkworld.fragments.BaseFragment;
+import app.rockkworld.fragments.ImageViewerFragment;
 import app.rockkworld.models.UserPost;
 import app.rockkworld.models.UserPost;
 import app.rockkworld.utils.APIs;
@@ -27,10 +34,12 @@ import app.rockkworld.volley.VolleyManager;
  */
 public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClickListener {
     private Context context;
+    private BaseFragment fragment;
 
-    public PostsAdapter(Context context, int resource, List<UserPost> objects) {
-        super(context, resource, objects);
-        this.context = context;
+    public PostsAdapter(BaseFragment fragment, int resource, List<UserPost> objects) {
+        super(fragment.mActivty, resource, objects);
+//        this.context = context;
+        this.fragment = fragment;
     }
 
     @Override
@@ -56,7 +65,9 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
             postViewHolder.shareCount.setOnClickListener(this);
 
             postViewHolder.postText = (TextView) convertView.findViewById(R.id.tuple_postText);
+
             postViewHolder.postImg = (NetworkImageView) convertView.findViewById(R.id.tuple_postImage);
+            postViewHolder.postImg.setOnClickListener(this);
 
             postViewHolder.doComment = (TextView) convertView.findViewById(R.id.do_comment);
             postViewHolder.doComment.setOnClickListener(this);
@@ -81,23 +92,23 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
         MLog.d("item[" + position + "]--->>  " + item);
         if (!TextUtils.isEmpty(item.getProfilePic())) {
             postViewHolder.userImg.setImageUrl(APIs.URL_GetUserImage(item.getProfilePic()), VolleyManager.getImageLoader());
-        }else{
+        } else {
             postViewHolder.userImg.setDefaultImageResId(R.drawable.ic_default_profile_pic);
         }
         postViewHolder.timeStamp.setText(item.getModified());
 
-        if(!TextUtils.isEmpty(item.getLikeCount())){
-            postViewHolder.likeCount.setText(item.getLikeCount()+" Likes" );
+        if (!TextUtils.isEmpty(item.getLikeCount())) {
+            postViewHolder.likeCount.setText(item.getLikeCount() + " Likes");
             postViewHolder.likeCount.setVisibility(View.VISIBLE);
         }
 
-        if(!TextUtils.isEmpty(item.getCommentsCount())){
-            postViewHolder.commentCount.setText(item.getCommentsCount()+" Comments");
+        if (!TextUtils.isEmpty(item.getCommentsCount())) {
+            postViewHolder.commentCount.setText(item.getCommentsCount() + " Comments");
             postViewHolder.commentCount.setVisibility(View.VISIBLE);
         }
 
-        if(item.getSharedBy()!=null){
-            postViewHolder.likeCount.setText(item.getSharedBy().size()+" Shares");
+        if (item.getSharedBy() != null) {
+            postViewHolder.likeCount.setText(item.getSharedBy().size() + " Shares");
             postViewHolder.likeCount.setVisibility(View.VISIBLE);
         }
 
@@ -109,25 +120,26 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
             postViewHolder.postText.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(item.getPostImage())) {
-            MLog.d("getPostImage",APIs.URL_GetPostImage(item.getPostImage()));
+            MLog.d("getPostImage", APIs.URL_GetPostImage(item.getPostImage()));
             postViewHolder.postImg.setImageUrl(APIs.URL_GetPostImage(item.getPostImage()), VolleyManager.getImageLoader());
             postViewHolder.postImg.setVisibility(View.VISIBLE);
         } else {
             postViewHolder.postImg.setVisibility(View.GONE);
         }
 
-        postViewHolder.doLike .setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
-        postViewHolder.doDislike .setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
+        postViewHolder.doLike.setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
+        postViewHolder.doDislike.setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
 
 
         postViewHolder.doComment.setTag(position);
-        postViewHolder.doLike .setTag(position);
-        postViewHolder.doDislike .setTag(position);
+        postViewHolder.postImg.setTag(position);
+        postViewHolder.doLike.setTag(position);
+        postViewHolder.doDislike.setTag(position);
         postViewHolder.doShare.setTag(position);
-
-        postViewHolder.likeCount.setTag( position);
+        postViewHolder.likeCount.setTag(position);
         postViewHolder.dislikeCount.setTag(position);
         postViewHolder.commentCount.setTag(position);
+
 
         return convertView;
     }
@@ -135,6 +147,35 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        if (v.getTag() == null) {
+            return;
+        }
+        int position = Integer.parseInt(v.getTag().toString());
+        switch (v.getId()) {
+            case R.id.tuple_postImage:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    v.setTransitionName("image_post" + position);
+                    Activity mActivty = fragment.mActivty;
+                    fragment.setSharedElementReturnTransition(TransitionInflater.from(mActivty).inflateTransition(R.transition.change_image_transform));
+                    fragment.setExitTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
+
+                    // Create new fragment to add (Fragment B)
+                    BaseFragment fragment = ImageViewerFragment.getInstance(APIs.URL_GetPostImage(getItem(position).getPostImage()), "image_post" + position);
+                    fragment.setSharedElementEnterTransition(TransitionInflater.from(mActivty).inflateTransition(R.transition.change_image_transform));
+                    fragment.setEnterTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
+
+                    // Our shared element (in Fragment A)
+//                    mProductImage   = (ImageView) mLayout.findViewById(R.id.product_detail_image);
+
+                    // Add Fragment B
+                    FragmentTransaction ft = this.fragment.getFragmentManager().beginTransaction()
+                            .replace(R.id.rw_fragmentContainer, fragment)
+                            .addToBackStack("transaction")
+                            .addSharedElement(v, "image_post" + position);
+                    ft.commit();
+                }
+                break;
+        }
 
 //        try {
 //

@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
-
 import app.rockkworld.R;
 import app.rockkworld.models.UserProfileModel;
 import butterknife.Bind;
@@ -55,7 +51,7 @@ public class AboutMeFragment extends BaseFragment {
 
     private void getViewWithInfo(LinearLayout linearLayout, UserProfileModel.User user) {
         for (int i = 0; i < 13; i++) {
-            View inflate = LayoutInflater.from(activity).inflate(R.layout.layout_about_card, linearLayout, false);
+            View inflate = LayoutInflater.from(mActivty).inflate(R.layout.layout_about_card, linearLayout, false);
             linearLayout.addView(inflate);
 
             TextView title = (TextView) inflate.findViewById(R.id.title);

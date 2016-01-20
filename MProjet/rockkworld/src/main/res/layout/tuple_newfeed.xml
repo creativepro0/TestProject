@@ -119,10 +119,11 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/tuple_postImage"
                 android:layout_width="match_parent"
+                android:transitionName="image_post"
                 android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
-                android:scaleType="fitXY"/>
+                android:scaleType="centerCrop"/>
         </LinearLayout>
 
         <include

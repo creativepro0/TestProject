@@ -47,14 +47,17 @@ import app.rockkworld.volley.VolleyManager;
 public class NewFeedFragment extends BaseFragment implements ResponseListener {
 
     int color;
+    private View view;
+
     public NewFeedFragment() {
     }
+
     @SuppressLint("ValidFragment")
     public NewFeedFragment(int color) {
         this.color = color;
     }
 
-    public static NewFeedFragment newInstance(Bundle args){
+    public static NewFeedFragment newInstance(Bundle args) {
         NewFeedFragment fragment = new NewFeedFragment();
         fragment.setArguments(args);
         return fragment;
@@ -68,46 +71,50 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view=inflater.inflate(R.layout.fragment_news_feeds, null);
-        fetchData();
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_news_feeds, null);
+            fetchData();
+        }
         return view;
     }
+
     LoadingDialog loadingDialog;
-    private void fetchData(){
+
+    private void fetchData() {
         PrefUtils prefUtils = PrefUtils.get();
         String userID = prefUtils.getUserPref(PrefUtils.UserPref.USER_ID);
-        if (TextUtils.isEmpty(userID)){
-            Intent intent=new Intent(getActivity(), LoginSignUpActivity.class);
+        if (TextUtils.isEmpty(userID)) {
+            Intent intent = new Intent(getActivity(), LoginSignUpActivity.class);
             getActivity().startActivity(intent);
-        }else {
-            loadingDialog=new LoadingDialog(getActivity());
+        } else {
+            loadingDialog = new LoadingDialog(getActivity());
             Utils.showDialog(loadingDialog);
 
             HashMap<String, String> params = new HashMap<String, String>();
-            params.put("profileId",userID );
+            params.put("profileId", userID);
             params.put("page", "1");
-            GsonRequest loginReq = new GsonRequest(APIs.URL_NewFeed()+userID, params, this, NewsFeedModel.class);
+            GsonRequest loginReq = new GsonRequest(APIs.URL_NewFeed() + userID, params, this, NewsFeedModel.class);
             VolleyManager.addToQueue(loginReq);
         }
     }
+
     @Override
     public void onResponse(RWRequest request, Object response) {
 
-        NewsFeedModel newFeedResponse= (NewsFeedModel) response;
+        NewsFeedModel newFeedResponse = (NewsFeedModel) response;
         ArrayList<UserPost> posts = newFeedResponse.getPosts();
-        if (posts!=null) {
-            if (posts.size()>0)
-            MLog.d("Post", posts.get(0).toString());
-        }else {
+        if (posts != null) {
+            if (posts.size() > 0)
+                MLog.d("Post", posts.get(0).toString());
+        } else {
             MLog.d("Post", "Post ==null");
         }
 //        if (posts!=null){
 //            MLog.d("NesFeed","posts count = "+posts.size());
 //        }
         Utils.hideDialog(loadingDialog);
-        ListView list= (ListView) getView().findViewById(R.id.list_newFeeds);
-        PostsAdapter adapter=new PostsAdapter(getActivity(),0,posts);
+        ListView list = (ListView) getView().findViewById(R.id.list_newFeeds);
+        PostsAdapter adapter = new PostsAdapter(this, 0, posts);
         list.setAdapter(adapter);
     }
 

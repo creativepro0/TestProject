@@ -1,7 +1,6 @@
 package app.rockkworld.fragments;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
@@ -9,11 +8,11 @@ import android.support.v4.app.Fragment;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected Activity activity;
+    public Activity mActivty;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.activity = activity;
+        this.mActivty = activity;
     }
 }
