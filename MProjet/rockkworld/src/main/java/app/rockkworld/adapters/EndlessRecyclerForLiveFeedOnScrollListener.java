@@ -29,7 +29,7 @@ public abstract class EndlessRecyclerForLiveFeedOnScrollListener implements AbsL
 
     public abstract void onLoadMore(String id);
 
-    public abstract void updateLastItem(AbsListView absListView, int position);
+    public abstract void updateLastItem(EndlessRecyclerForLiveFeedOnScrollListener scrollListener,AbsListView absListView, int position);
 
 
     @Override
@@ -42,7 +42,7 @@ public abstract class EndlessRecyclerForLiveFeedOnScrollListener implements AbsL
             if (totalItemCount > previousTotal) {
                 loading = false;
                 previousTotal = totalItemCount;
-                updateLastItem(view, totalItemCount - 1);
+                updateLastItem(this,view, totalItemCount - 1);
             }
         }
         if (!loading && (totalItemCount - visibleItemCount)

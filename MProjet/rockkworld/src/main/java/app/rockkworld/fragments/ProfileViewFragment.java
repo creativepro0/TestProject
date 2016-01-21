@@ -75,7 +75,7 @@ public class ProfileViewFragment extends BaseFragment implements ResponseListene
         UserProfileModel profileData = (UserProfileModel) response;
 
         if (response != null) {
-            UserProfileModel.User userDetail = response.getUserDetail().getUserDetail();
+            UserProfileModel.UserData userDetail = response.getUserDetail();//.getUserDetail();
             ImageLoader.getInstance().displayImage(APIs.URL_GetUserImage(userDetail.getProfilePhoto()),civ_userImage);
             tv_userName.setText(userDetail.getDiaplayName());
             tv_city.setText(userDetail.getCity());

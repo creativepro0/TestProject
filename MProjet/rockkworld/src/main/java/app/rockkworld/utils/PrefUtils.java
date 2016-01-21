@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import app.rockkworld.models.UserMetaDetail;
+
 
 /**
  * Created by divya on 31/10/15.
@@ -79,6 +81,14 @@ public class PrefUtils {
     public boolean isLoggedIn() {
         SharedPreferences logiPref = context.getSharedPreferences(LOGIN_PREF_FILE, Context.MODE_PRIVATE);
         return !TextUtils.isEmpty(logiPref.getString(KEY_USER_ID, null));
+    }
+
+    public UserMetaDetail getUserDetail() {
+        UserMetaDetail userDetail = new UserMetaDetail();
+        userDetail.setName("Rakesh");
+        userDetail.setDp("39");
+        userDetail.setUid("39");
+        return userDetail;
     }
 
 

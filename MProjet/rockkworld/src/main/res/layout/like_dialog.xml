@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@drawable/bg_card"
+              android:layout_height="match_parent"
+              android:padding="10dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/gotolikeParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_likes_n"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="20 people like this"
+            android:layout_marginLeft="8dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    <ImageButton
+        android:id="@+id/ibtn_nav_likeDialog"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerInside"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:src="@drawable/navigation_next_item_dark"
+        />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/userListView"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+    </ListView>
+    <LinearLayout
+        android:id="@+id/sendCommentParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/editTxtComment"
+            android:hint="Enter your comment.."
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColorHint="@color/homepage_bg"
+            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:id="@+id/sendComment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:padding="4dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_action_send_now"/>
+    </LinearLayout>
+
+</LinearLayout>

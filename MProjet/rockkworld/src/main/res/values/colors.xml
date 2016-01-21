@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="window_bg">#FFFFFFFF</color>
-
+    <color name="trans_black">#99000000</color>
     <color name="primary">#009688</color>
     <color name="primary_dark">#00796B</color>
     <color name="primary_light">#B2DFDB</color>
@@ -22,4 +22,5 @@
     <color name="tuple_textLight">#FF5F5F5F</color>
     <color name="postfooter_textcolor">#FF5c5c5c</color>
     <color name="postfooter_bg">#e6e6e6</color>
+    <color name="homepage_bg">#dddee3</color>
 </resources>

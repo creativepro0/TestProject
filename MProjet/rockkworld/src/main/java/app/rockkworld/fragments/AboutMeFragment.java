@@ -23,7 +23,7 @@ public class AboutMeFragment extends BaseFragment {
     @Bind(R.id.scrollContainer)
     LinearLayout linearLayout;
 
-    public static AboutMeFragment newInstance(UserProfileModel.User user) {
+    public static AboutMeFragment newInstance(UserProfileModel.UserData user) {
         AboutMeFragment aboutMeFragment = new AboutMeFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", user);
@@ -45,11 +45,11 @@ public class AboutMeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         linearLayout.removeAllViews();
         Bundle arguments = getArguments();
-        UserProfileModel.User user = (UserProfileModel.User) arguments.getSerializable("user");
+        UserProfileModel.UserData user = (UserProfileModel.UserData) arguments.getSerializable("user");
         getViewWithInfo(linearLayout, user);
     }
 
-    private void getViewWithInfo(LinearLayout linearLayout, UserProfileModel.User user) {
+    private void getViewWithInfo(LinearLayout linearLayout, UserProfileModel.UserData user) {
         for (int i = 0; i < 13; i++) {
             View inflate = LayoutInflater.from(mActivty).inflate(R.layout.layout_about_card, linearLayout, false);
             linearLayout.addView(inflate);

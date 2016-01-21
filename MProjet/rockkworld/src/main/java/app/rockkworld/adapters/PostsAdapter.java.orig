@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 
@@ -92,23 +93,23 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
         MLog.d("item[" + position + "]--->>  " + item);
         if (!TextUtils.isEmpty(item.getProfilePic())) {
             postViewHolder.userImg.setImageUrl(APIs.URL_GetUserImage(item.getProfilePic()), VolleyManager.getImageLoader());
-        }else{
+        } else {
             postViewHolder.userImg.setDefaultImageResId(R.drawable.ic_default_profile_pic);
         }
         postViewHolder.timeStamp.setText(item.getModified());
 
-        if(!TextUtils.isEmpty(item.getLikeCount())){
-            postViewHolder.likeCount.setText(item.getLikeCount()+" Likes" );
+        if (!TextUtils.isEmpty(item.getLikeCount())) {
+            postViewHolder.likeCount.setText(item.getLikeCount() + " Likes");
             postViewHolder.likeCount.setVisibility(View.VISIBLE);
         }
 
-        if(!TextUtils.isEmpty(item.getCommentsCount())){
-            postViewHolder.commentCount.setText(item.getCommentsCount()+" Comments");
+        if (!TextUtils.isEmpty(item.getCommentsCount())) {
+            postViewHolder.commentCount.setText(item.getCommentsCount() + " Comments");
             postViewHolder.commentCount.setVisibility(View.VISIBLE);
         }
 
-        if(item.getSharedBy()!=null){
-            postViewHolder.likeCount.setText(item.getSharedBy().size()+" Shares");
+        if (item.getSharedBy() != null) {
+            postViewHolder.likeCount.setText(item.getSharedBy().size() + " Shares");
             postViewHolder.likeCount.setVisibility(View.VISIBLE);
         }
 
@@ -120,25 +121,35 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
             postViewHolder.postText.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(item.getPostImage())) {
-            MLog.d("getPostImage",APIs.URL_GetPostImage(item.getPostImage()));
+            MLog.d("getPostImage", APIs.URL_GetPostImage(item.getPostImage()));
             postViewHolder.postImg.setImageUrl(APIs.URL_GetPostImage(item.getPostImage()), VolleyManager.getImageLoader());
             postViewHolder.postImg.setVisibility(View.VISIBLE);
         } else {
             postViewHolder.postImg.setVisibility(View.GONE);
         }
 
-        postViewHolder.doLike .setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
-        postViewHolder.doDislike .setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
+        postViewHolder.doLike.setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
+        postViewHolder.doDislike.setSelected(!TextUtils.isEmpty(item.getLikeUnlikeBySelf()));
 
 
-        postViewHolder.doComment.setTag(R.id.listtuple_position, position);
+<<<<<<< Updated upstream
+        postViewHolder.doComment.setTag(position);
         postViewHolder.postImg.setTag(position);
+        postViewHolder.doLike.setTag(position);
+        postViewHolder.doDislike.setTag(position);
+        postViewHolder.doShare.setTag(position);
+        postViewHolder.likeCount.setTag(position);
+=======
+        postViewHolder.doComment.setTag(R.id.listtuple_position, position);
         postViewHolder.doLike .setTag(R.id.listtuple_position, position);
         postViewHolder.doDislike .setTag(R.id.listtuple_position,position);
         postViewHolder.doShare.setTag(R.id.listtuple_position,position);
+
         postViewHolder.likeCount.setTag( position);
+>>>>>>> Stashed changes
         postViewHolder.dislikeCount.setTag(position);
         postViewHolder.commentCount.setTag(position);
+
 
         return convertView;
     }
@@ -178,32 +189,32 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
 
 //        try {
 //
-//            int postiion= (int) v.getTag();
-//            String clickedView="";
-//            UserPost UserPost = getItem(postiion);
-//            switch (v.getId()){
-//                case R.id.do_comment:
-//                    clickedView="do_comment";
+            int postiion= (int) v.getTag(R.id.listtuple_position);
+            String clickedView="";
+            UserPost UserPost = getItem(postiion);
+            switch (v.getId()){
+                case R.id.do_comment:
+                    clickedView="do_comment";
 //                    CommentDialog dialog=new CommentDialog(context,null);
 //                    dialog.show();
-//                    break;
-//                case R.id.do_share:
-//                    clickedView="do_share";
-//
-//                    break;
-//                case R.id.do_likes:
-//                    clickedView="do_likes";
+                    break;
+                case R.id.do_share:
+                    clickedView="do_share";
+
+                    break;
+                case R.id.do_likes:
+                    clickedView="do_likes";
 //                    UserPost.setLikeCount(!UserPost.getLikeCount());
 //                    v.setSelected(UserPost.getLikeCount());
-////                    UserPost.setLikeCount(UserPost.getLikeCount());
-//                    break;
-//                case R.id.do_dislikes:
-//                    clickedView="do_dislikes";
+//                    UserPost.setLikeCount(UserPost.getLikeCount());
+                    break;
+                case R.id.do_dislikes:
+                    clickedView="do_dislikes";
 //                    UserPost.setDislikeStatus(!UserPost.getDislikeStatus());
 //                    v.setSelected(UserPost.getDislikeStatus());
-////                    UserPost.setDislikeCount(UserPost.getDislikeCount()+1);
-//                    break;
-//
+//                    UserPost.setDislikeCount(UserPost.getDislikeCount()+1);
+                    break;
+
 //                case R.id.txt_commentCount:
 //                    clickedView="txt_commentCount";
 //                    CommentDialog dialog1=new CommentDialog(context,null);
@@ -219,9 +230,9 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
 //                    LikeDisLikeDialog dialog3=new LikeDisLikeDialog(context);
 //                    dialog3.show();
 //                    break;
-//
-//            }
-////            Toast.makeText(context,clickedView+" @ "+postiion,Toast.LENGTH_SHORT).show();
+
+            }
+            Toast.makeText(context,clickedView+" @ "+postiion, Toast.LENGTH_SHORT).show();
 //        }catch (Exception e){
 //          e.printStackTrace();
 //        }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 
 import app.rockkworld.dialogs.LoadingDialog;
 
@@ -49,4 +50,15 @@ public class Utils {
 //        transaction.commit();
     }
 
+    public static int parseToInt(String intStr,int defaultValue){
+
+        if (!TextUtils.isEmpty(intStr)){
+            try{
+                return Integer.parseInt(intStr);
+            }catch (NumberFormatException e){
+                return defaultValue;
+            }
+        }
+        return defaultValue;
+    }
 }

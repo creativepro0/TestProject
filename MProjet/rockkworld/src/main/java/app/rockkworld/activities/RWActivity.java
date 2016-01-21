@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import app.rockkworld.R;
 import app.rockkworld.adapters.ViewPagerAdapter;
@@ -56,7 +57,6 @@ getSupportFragmentManager().addOnBackStackChangedListener(this);
         Utils.commitTransactions(getSupportFragmentManager(),R.id.rw_fragmentContainer,newFeedFragment,customAnimations, false);
 
     }
-
 
     @OnClick(R.id.btn_hambugerMenu)
     public void toggleHambuger(View button) {

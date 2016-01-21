@@ -18,4 +18,7 @@
     <dimen name="detail_backdrop_height">200dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
+    
+    
+    <item name="listtuple_position" type="id">0</item>
 </resources>

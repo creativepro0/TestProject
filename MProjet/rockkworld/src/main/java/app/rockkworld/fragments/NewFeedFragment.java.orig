@@ -19,17 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import app.rockkworld.R;
-//import app.rockkworld.activities.LoginSignUpActivity;
-//import app.rockkworld.activities.RWActivity;
-//import app.rockkworld.adapters.PostsAdapter;
-//import app.rockkworld.dialogs.LoadingDialog;
-//import app.rockkworld.model.Login;
-//import app.rockkworld.model.NewsFeedModel;
-//import app.rockkworld.model.UserPost;
-//import app.rockkworld.network.APIs;
-//import app.rockkworld.utils.MLog;
-//import app.rockkworld.utils.PrefUtils;
-//import app.rockkworld.utils.Utils;
 import app.rockkworld.activities.LoginSignUpActivity;
 import app.rockkworld.adapters.EndlessRecyclerForLiveFeedOnScrollListener;
 import app.rockkworld.adapters.PostsAdapter;
@@ -45,15 +34,30 @@ import app.rockkworld.volley.RWRequest;
 import app.rockkworld.volley.ResponseListener;
 import app.rockkworld.volley.VolleyManager;
 
+//import app.rockkworld.activities.LoginSignUpActivity;
+//import app.rockkworld.activities.RWActivity;
+//import app.rockkworld.adapters.PostsAdapter;
+//import app.rockkworld.dialogs.LoadingDialog;
+//import app.rockkworld.model.Login;
+//import app.rockkworld.model.NewsFeedModel;
+//import app.rockkworld.model.UserPost;
+//import app.rockkworld.network.APIs;
+//import app.rockkworld.utils.MLog;
+//import app.rockkworld.utils.PrefUtils;
+//import app.rockkworld.utils.Utils;
+
 /**
  * Created by divya on 29/11/15.
  */
 public class NewFeedFragment extends BaseFragment implements ResponseListener {
 
-     int color;
+    int color;
+<<<<<<< Updated upstream
+    private View view;
+=======
     int page = 1;
     private ListView list;
-    private View view;
+>>>>>>> Stashed changes
 
     public NewFeedFragment() {
     }
@@ -77,40 +81,60 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(view==null) {
+<<<<<<< Updated upstream
+        if (view == null) {
             view = inflater.inflate(R.layout.fragment_news_feeds, null);
-            list = (ListView) view.findViewById(R.id.list_newFeeds);
-            list.setOnScrollListener(new EndlessRecyclerForLiveFeedOnScrollListener() {
-                @Override
-                public void onLoadMore(String id) {
-                    makeApiCall(id);
-                }
-
-                @Override
-                public void updateLastItem(EndlessRecyclerForLiveFeedOnScrollListener scrollListener, AbsListView absListView, int position) {
-
-                }
-
-                @Override
-                public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-                }
-            });
-            page=1;
-            makeApiCall("");
+            fetchData();
         }
+=======
+
+        View view = inflater.inflate(R.layout.fragment_news_feeds, null);
+        list = (ListView) view.findViewById(R.id.list_newFeeds);
+        list.setOnScrollListener(new EndlessRecyclerForLiveFeedOnScrollListener() {
+            @Override
+            public void onLoadMore(String id) {
+                makeApiCall(id);
+            }
+
+            @Override
+            public void updateLastItem(EndlessRecyclerForLiveFeedOnScrollListener scrollListener, AbsListView absListView, int position) {
+                PostsAdapter adapter = (PostsAdapter) absListView.getAdapter();
+                String postID = adapter.getItem(position).getPostID();
+                scrollListener.setLastItem(postID);
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+        });
+        makeApiCall(null);
+>>>>>>> Stashed changes
         return view;
     }
 
     LoadingDialog loadingDialog;
 
+<<<<<<< Updated upstream
+    private void fetchData() {
+=======
     private void makeApiCall(String id) {
+>>>>>>> Stashed changes
         PrefUtils prefUtils = PrefUtils.get();
         String userID = prefUtils.getUserPref(PrefUtils.UserPref.USER_ID);
         if (TextUtils.isEmpty(userID)) {
             Intent intent = new Intent(getActivity(), LoginSignUpActivity.class);
             getActivity().startActivity(intent);
         } else {
+<<<<<<< Updated upstream
+            loadingDialog = new LoadingDialog(getActivity());
+            Utils.showDialog(loadingDialog);
+
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("profileId", userID);
+            params.put("page", "1");
+            GsonRequest loginReq = new GsonRequest(APIs.URL_NewFeed() + userID, params, this, NewsFeedModel.class);
+=======
             if (page <= 1) {
                 loadingDialog = new LoadingDialog(getActivity());
                 Utils.showDialog(loadingDialog);
@@ -122,22 +146,31 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
             params.put("page", "" + page);
             GsonRequest loginReq = new GsonRequest(APIs.URL_NewFeed(params), params, this, NewsFeedModel.class);
             MLog.d("FFF", loginReq.getUrl());
+>>>>>>> Stashed changes
             VolleyManager.addToQueue(loginReq);
         }
     }
 
+<<<<<<< Updated upstream
+=======
 
+>>>>>>> Stashed changes
     @Override
     public void onResponse(RWRequest request, Object response) {
 
         NewsFeedModel newFeedResponse = (NewsFeedModel) response;
         ArrayList<UserPost> posts = newFeedResponse.getPosts();
         if (posts != null) {
+<<<<<<< Updated upstream
+            if (posts.size() > 0)
+                MLog.d("Post", posts.get(0).toString());
+=======
             if (posts.size() > 0) {
                 MLog.d("Post", posts.get(0).toString());
                 page++;
                 MLog.d("FFF", "postID----------> " + posts.get(0).getPostID() + " ------> " + posts.size());
             }
+>>>>>>> Stashed changes
         } else {
             MLog.d("Post", "Post ==null");
         }
@@ -145,10 +178,15 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
 //            MLog.d("NesFeed","posts count = "+posts.size());
 //        }
         Utils.hideDialog(loadingDialog);
+<<<<<<< Updated upstream
+        ListView list = (ListView) getView().findViewById(R.id.list_newFeeds);
+        PostsAdapter adapter = new PostsAdapter(this, 0, posts);
+        list.setAdapter(adapter);
+=======
 
         ListAdapter adapter1 = list.getAdapter();
         if (adapter1 == null) {
-            PostsAdapter adapter = new PostsAdapter(this, 0, posts);
+            PostsAdapter adapter = new PostsAdapter(getActivity(), 0, posts);
             list.setAdapter(adapter);
             return;
         }
@@ -157,6 +195,7 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
         MLog.d("FFF", "adpaterItem count----------> " + adapter1.getCount());
 
 
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -164,6 +203,5 @@ public class NewFeedFragment extends BaseFragment implements ResponseListener {
         Utils.hideDialog(loadingDialog);
         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
     }
-
 
 }

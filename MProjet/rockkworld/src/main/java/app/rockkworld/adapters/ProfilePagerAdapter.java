@@ -13,12 +13,12 @@ import app.rockkworld.models.UserProfileModel;
  */
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
     private final FragmentManager fm;
-    private final UserProfileModel.User user;
+    private final UserProfileModel.UserData user;
 
     private static final String[] TITLE = {"About Me", "Time Line"};
 
 
-    public ProfilePagerAdapter(FragmentManager fm, UserProfileModel.User user) {
+    public ProfilePagerAdapter(FragmentManager fm, UserProfileModel.UserData user) {
         super(fm);
         this.fm = fm;
         this.user = user;

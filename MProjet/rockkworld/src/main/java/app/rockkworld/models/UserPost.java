@@ -125,6 +125,26 @@ public class UserPost implements Serializable{
         return profilePic;
     }
 
+    public void setLikeCount(String likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public void setLikeUnlikeBySelf(String likeUnlikeBySelf) {
+        this.likeUnlikeBySelf = likeUnlikeBySelf;
+    }
+
+    public void setDislikeCount(String dislikeCount) {
+        this.dislikeCount = dislikeCount;
+    }
+
+    public void setCommentsCount(String commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public void setSharedBy(ArrayList<String> sharedBy) {
+        this.sharedBy = sharedBy;
+    }
+
     @Override
     public String toString() {
         return "UserPost{" +
