@@ -134,7 +134,7 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
         postViewHolder.doComment.setTag(R.id.listtuple_position, position);
         postViewHolder.postImg.setTag(position);
         postViewHolder.doLike .setTag(R.id.listtuple_position, position);
-        postViewHolder.doDislike .setTag(R.id.listtuple_position,position);
+        postViewHolder.doDislike .setTag(R.id.listtuple_position, position);
         postViewHolder.doShare.setTag(R.id.listtuple_position,position);
         postViewHolder.likeCount.setTag( position);
         postViewHolder.dislikeCount.setTag(position);
@@ -155,22 +155,25 @@ public class PostsAdapter extends ArrayAdapter<UserPost> implements View.OnClick
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     v.setTransitionName("image_post" + position);
                     Activity mActivty = fragment.mActivty;
+//                    fragment.setSharedElementReturnTransition(TransitionInflater.from(mActivty).inflateTransition(R.transition.change_image_transform));
                     fragment.setSharedElementReturnTransition(TransitionInflater.from(mActivty).inflateTransition(R.transition.change_image_transform));
-                    fragment.setExitTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
+                    fragment.setExitTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.fade));
+//                    fragment.setReturnTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
 
                     // Create new fragment to add (Fragment B)
-                    BaseFragment fragment = ImageViewerFragment.getInstance(APIs.URL_GetPostImage(getItem(position).getPostImage()), "image_post" + position);
+                    BaseFragment fragment = ImageViewerFragment.getInstance(APIs.URL_GetPostImage(getItem(position).getPostImage()), v.getTransitionName());
                     fragment.setSharedElementEnterTransition(TransitionInflater.from(mActivty).inflateTransition(R.transition.change_image_transform));
-                    fragment.setEnterTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
-
+                    fragment.setEnterTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.fade));
+//                    fragment.setReenterTransition(TransitionInflater.from(mActivty).inflateTransition(android.R.transition.explode));
                     // Our shared element (in Fragment A)
 //                    mProductImage   = (ImageView) mLayout.findViewById(R.id.product_detail_image);
 
                     // Add Fragment B
                     FragmentTransaction ft = this.fragment.getFragmentManager().beginTransaction()
+                            .addSharedElement(v, v.getTransitionName())
                             .replace(R.id.rw_fragmentContainer, fragment)
                             .addToBackStack("transaction")
-                            .addSharedElement(v, "image_post" + position);
+                            ;
                     ft.commit();
                 }
                 break;

@@ -21,7 +21,7 @@ public class ImageViewerFragment extends BaseFragment {
         ImageViewerFragment imageViewerFragment = new ImageViewerFragment();
         Bundle bundle = new Bundle();
         bundle.putString("url", imgUrl);
-        bundle.putString("tName", imgUrl);
+        bundle.putString("tName", tName);
         imageViewerFragment.setArguments(bundle);
         return imageViewerFragment;
     }
